@@ -1,0 +1,70 @@
+<!--
+  Returners Connect Human Bingo
+  Adapted from Bard Bingo
+  Georgi Chikolov
+  2026-05-12
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Returners Connect Human Bingo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="welcomePopup" class="popup">
+    <div class="popup-content">
+      <h2>Welcome to Human Bingo!</h2>
+      <p>
+        Find people who match the descriptions on your card. Add their names in the boxes as you meet them.
+        Get three in a row to win bingo and take a screenshot to submit for the prize drawing.
+      </p>
+      <button type="button" onclick="acceptTerms()">Start</button>
+    </div>
+  </div>
+
+  <div class="container" id="bingoContainer" style="display:none;">
+    <header class="site-header" id="siteHeader">
+      <p class="eyebrow">Returners Connect</p>
+      <h1>Human Bingo</h1>
+      <p class="instructions">
+        Find a person who matches each description and write their name inside the box. Make some CIVSA connections along the way!
+      </p>
+
+      <div class="controls" aria-label="Card controls">
+        <label for="cardSelect">Card set</label>
+        <select id="cardSelect" aria-label="Choose card set"></select>
+        <button type="button" id="randomCardButton">Random card</button>
+        <button type="button" id="resetButton">Reset names</button>
+      </div>
+    </header>
+
+    <main>
+      <div class="card-shell">
+        <div class="bingo-grid" id="bingoGrid" aria-label="Human bingo card"></div>
+        <label class="player-line">
+          <span>Name &amp; Institution:</span>
+          <input id="playerName" type="text" autocomplete="name" aria-label="Name and institution" />
+        </label>
+      </div>
+    </main>
+
+    <footer class="share-banner">
+      <p id="submissionText"></p>
+    </footer>
+  </div>
+
+  <div id="congratsPopup" class="popup" style="display:none;">
+    <div class="popup-content">
+      <h2>Bingo!</h2>
+      <p id="congratsText">You got bingo. Take a screenshot and submit it for the prize drawing.</p>
+      <button type="button" onclick="closeCongrats()">Keep playing</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

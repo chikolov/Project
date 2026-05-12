@@ -1,0 +1,318 @@
+/*
+  Returners Connect Human Bingo
+  Main colors are easy to swap here.
+*/
+:root {
+  --civsa-navy: #173c70;
+  --civsa-blue: #6fb0df;
+  --civsa-light-blue: #a8d1ee;
+  --civsa-gold: #f1a33a;
+  --paper: #ffffff;
+  --ink: #111111;
+  --soft-ink: #27364a;
+  --line: #d7e3ef;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Work Sans", sans-serif;
+  background: var(--civsa-navy);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+.container {
+  width: min(100%, 760px);
+  padding: 1rem;
+}
+
+.site-header {
+  background: var(--civsa-light-blue);
+  color: var(--soft-ink);
+  text-align: center;
+  padding: 1.5rem 1rem 1rem;
+  border-radius: 28px 28px 0 0;
+}
+
+.eyebrow {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.site-header h1 {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(2.5rem, 10vw, 4.4rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--civsa-navy);
+}
+
+.instructions {
+  max-width: 640px;
+  margin: 1rem auto 0;
+  font-weight: 700;
+  line-height: 1.35;
+  font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.controls label {
+  font-weight: 700;
+}
+
+.controls select,
+.controls button,
+.player-line input,
+.person-name {
+  font: inherit;
+}
+
+.controls select,
+.controls button {
+  border: 2px solid var(--civsa-navy);
+  border-radius: 999px;
+  padding: 0.45rem 0.75rem;
+  background: var(--paper);
+  color: var(--civsa-navy);
+  font-weight: 700;
+}
+
+.controls button {
+  cursor: pointer;
+}
+
+.card-shell {
+  background: var(--civsa-blue);
+  padding: clamp(0.75rem, 3vw, 1.25rem);
+  border-radius: 0 0 28px 28px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+.bingo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(0.55rem, 2vw, 1rem);
+}
+
+.bingo-cell {
+  aspect-ratio: 1 / 1;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-align: center;
+  padding: clamp(0.55rem, 2.5vw, 1rem);
+  border: 4px solid transparent;
+  min-width: 0;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.bingo-cell.selected {
+  border-color: var(--civsa-gold);
+  box-shadow: inset 0 0 0 4px rgba(241, 163, 58, 0.18);
+}
+
+.prompt-text {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  line-height: 1.12;
+  font-size: clamp(0.82rem, 3.2vw, 1.25rem);
+}
+
+.person-name {
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid #9fb2c5;
+  text-align: center;
+  padding: 0.25rem 0.1rem;
+  outline: none;
+  background: #f8fbff;
+  font-size: clamp(0.72rem, 2.5vw, 0.95rem);
+}
+
+.person-name:focus {
+  border-bottom-color: var(--civsa-navy);
+}
+
+.logo-cell {
+  color: var(--civsa-navy);
+  gap: 0.2rem;
+}
+
+.logo-cell strong {
+  font-family: "Montserrat", sans-serif;
+  font-size: clamp(1.7rem, 7vw, 3.1rem);
+  letter-spacing: 0.08em;
+}
+
+.logo-cell span {
+  font-weight: 800;
+  color: var(--civsa-gold);
+  text-transform: uppercase;
+  font-size: clamp(0.65rem, 2.4vw, 1rem);
+}
+
+.logo-mark {
+  width: clamp(38px, 11vw, 66px);
+  height: clamp(38px, 11vw, 66px);
+  border: 3px solid var(--civsa-blue);
+  border-radius: 999px;
+  position: relative;
+  margin-bottom: 0.15rem;
+}
+
+.logo-mark::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 3px solid var(--civsa-navy);
+  border-left-color: transparent;
+  border-radius: 999px;
+}
+
+.logo-mark::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 28px;
+  background: var(--civsa-gold);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -35%);
+  clip-path: polygon(50% 0, 68% 38%, 100% 38%, 70% 52%, 62% 100%, 38% 100%, 30% 52%, 0 38%, 32% 38%);
+}
+
+.player-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: clamp(0.95rem, 3vw, 1.3rem);
+  color: var(--ink);
+}
+
+.player-line input {
+  flex: 1;
+  min-width: 80px;
+  border: 0;
+  border-bottom: 3px solid var(--civsa-navy);
+  background: rgba(255, 255, 255, 0.55);
+  padding: 0.25rem;
+  outline: none;
+}
+
+.share-banner {
+  color: #ffffff;
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.35;
+  padding: 1rem;
+}
+
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 1rem;
+}
+
+.popup-content {
+  background: var(--paper);
+  color: var(--soft-ink);
+  border-radius: 24px;
+  width: min(92vw, 480px);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.28);
+}
+
+.popup-content h2 {
+  font-family: "Montserrat", sans-serif;
+  color: var(--civsa-navy);
+  font-size: 2rem;
+  margin-bottom: 0.65rem;
+}
+
+.popup-content p {
+  line-height: 1.45;
+}
+
+.popup-content button {
+  margin-top: 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--civsa-navy);
+  color: white;
+  padding: 0.75rem 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+@media (max-width: 420px) {
+  .container {
+    padding: 0.5rem;
+  }
+
+  .bingo-grid {
+    gap: 0.45rem;
+  }
+
+  .bingo-cell {
+    padding: 0.45rem;
+  }
+
+  .player-line {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
+
+@media print {
+  body {
+    background: white;
+  }
+
+  .popup,
+  .controls,
+  .share-banner {
+    display: none !important;
+  }
+
+  .container {
+    width: 100%;
+    max-width: none;
+    padding: 0;
+  }
+
+  .card-shell {
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
